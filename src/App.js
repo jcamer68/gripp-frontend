@@ -10,6 +10,7 @@ import SharedLayout from "./pages/SharedLayout";
 import Navbar from "./components/Navbar";
 import { Link } from "react-router-dom";
 import Card from "./components/Card";
+// import Setup from "./requests/1-first-request";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      {/* <Setup /> */}
     </section>
   );
 }

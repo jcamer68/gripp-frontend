@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Trends from "./pages/Trends";
+import Error from "./pages/Error";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="home" element={<Home />}></Route>
         <Route path="trends" element={<Trends />}></Route>
+        <Route path="*" element={<Error />}></Route>
       </Routes>
     </BrowserRouter>
   );

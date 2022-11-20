@@ -9,6 +9,7 @@ import Trends from "./pages/Trends";
 import Error from "./pages/Error";
 import SharedLayout from "./pages/SharedLayout";
 import Navbar from "./components/Navbar";
+import ReadData from "./pages/ReadData";
 import { Link } from "react-router-dom";
 import Card from "./components/Card";
 
@@ -21,6 +22,7 @@ function App() {
             <Route index element={<Home />}></Route>
             <Route path="trends" element={<Trends />}></Route>
             <Route path="community" element={<Community />}></Route>
+            <Route path="readdata" element={<ReadData />}></Route>
             <Route path="*" element={<Error />}></Route>
           </Route>
         </Routes>

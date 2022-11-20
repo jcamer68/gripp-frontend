@@ -8,17 +8,21 @@ import Home from "./pages/Home";
 import Trends from "./pages/Trends";
 import Error from "./pages/Error";
 import { Link } from "react-router-dom";
+import Card from "./components/Card";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="home" element={<Home />}></Route>
-        <Route path="trends" element={<Trends />}></Route>
-        <Route path="*" element={<Error />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <Card name="Heart Rate" stat={500} details="25% increase"></Card>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />}></Route>
+          <Route path="home" element={<Home />}></Route>
+          <Route path="trends" element={<Trends />}></Route>
+          <Route path="*" element={<Error />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 
   // // new line start

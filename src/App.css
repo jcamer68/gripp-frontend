@@ -1,3 +1,13 @@
+@import '../node_modules/@syncfusion/ej2-layouts/styles/material.css';
+
+.e-card .e-card-content {
+  font-size: 50px;
+}
+
+.e-card .e-card-header .e-card-header-caption .e-card-header-title {
+  font-size: 20px;
+}
+
 .App {
   text-align: center;
 }

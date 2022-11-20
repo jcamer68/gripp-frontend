@@ -6,29 +6,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Trends from "./pages/Trends";
-import Chart from "./components/Chart"
-
-const data = [
-  { month: 'Jan', sales: 35 }, { month: 'Feb', sales: 28 },
-  { month: 'Mar', sales: 34 }, { month: 'Apr', sales: 32 },
-  { month: 'May', sales: 40 }, { month: 'Jun', sales: 32 },
-  { month: 'Jul', sales: 35 }, { month: 'Aug', sales: 55 },
-  { month: 'Sep', sales: 38 }, { month: 'Oct', sales: 30 },
-  { month: 'Nov', sales: 25 }, { month: 'Dec', sales: 32 }
-];
+import Error from "./pages/Error";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <Chart data={data} xname="month" yname="sales" name="Sales"></Chart>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />}></Route>
-          <Route path="home" element={<Home />}></Route>
-          <Route path="trends" element={<Trends />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="home" element={<Home />}></Route>
+        <Route path="trends" element={<Trends />}></Route>
+        <Route path="*" element={<Error />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 
   // // new line start

@@ -11,6 +11,8 @@ const Home = () => {
   const [chartData, setChartData] = useState();
   const [leftPercentile, setLeftPercentile] = useState();
   const [rightPercentile, setRightPercentile] = useState();
+  const [recentLeft, setRecentLeft] = useState();
+  const [recentRight, setRecentRight] = useState();
   const [rules, setRules] = useState();
 
   function getData(userid) {
@@ -89,7 +91,9 @@ const Home = () => {
                 const res = response.data;
 
                 var recent_left = res.data[res.data.length - 1].output_left;
+                setRecentLeft(recent_left)
                 var recent_right = res.data[res.data.length - 1].output_right;
+                setRecentRight(recent_right)
 
                 var curr = 0;
                 while (left[curr] < recent_left) {
@@ -137,6 +141,7 @@ const Home = () => {
   getData(uid)
   getPercentile(uid)
   getRules(2)
+
 
   const cellSpacing = [5, 5];
   return (
@@ -202,10 +207,10 @@ const Home = () => {
           >
             <span id="close" className="e-template-icon e-clear-icon" />
             <div className="e-panel-container">
-              <b>
+              <b style={{fontSize: "30px"}}>
                 Danger Zones:
               </b>
-              <div>
+              <div style={{fontSize: "30px"}}>
                 {JSON.stringify(rules ? rules[0].name : "")}
               </div>
             </div>
@@ -220,7 +225,7 @@ const Home = () => {
           >
             <span id="close" className="e-template-icon e-clear-icon" />
             <div className="e-panel-container">
-              <ReadData></ReadData>
+              <ReadData onrun={() => getData(uid)} recent_left={recentLeft} recent_right={recentRight}></ReadData>
             </div>
           </div>
         </DashboardLayoutComponent>

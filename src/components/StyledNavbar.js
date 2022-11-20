@@ -6,11 +6,25 @@ import * as React from "react";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <NavLink to="/">Home</NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? "link active" : "link")}
+      >
+        Home
+      </NavLink>
       {/* <Link to="/home">Home</Link> */}
-      <NavLink to="/trends">Trends</NavLink>
-      <NavLink to="/community">Community</NavLink>
-      <NavLink to="/readdata">ReadData</NavLink>
+      <NavLink
+        to="/trends"
+        className={({ isActive }) => (isActive ? "link active" : "link")}
+      >
+        Trends
+      </NavLink>
+      <NavLink
+        to="/community"
+        className={({ isActive }) => (isActive ? "link active" : "link")}
+      >
+        Community
+      </NavLink>
     </nav>
   );
 };

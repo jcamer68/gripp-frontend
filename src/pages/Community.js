@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-const Trends = () => {
+const Community = () => {
   return (
     <section className="section">
-      <h2>Trends</h2>
+      <h2>Community</h2>
       <p>Coming Soon!</p>
     </section>
   );
 };
 
-export default Trends;
+export default Community;

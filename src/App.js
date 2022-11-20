@@ -3,22 +3,28 @@ import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
+import Community from "./pages/Community";
 import Home from "./pages/Home";
 import Trends from "./pages/Trends";
 import Error from "./pages/Error";
+import SharedLayout from "./pages/SharedLayout";
+import Navbar from "./components/Navbar";
 import { Link } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="home" element={<Home />}></Route>
-        <Route path="trends" element={<Trends />}></Route>
-        <Route path="*" element={<Error />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <section>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />}></Route>
+            <Route path="trends" element={<Trends />}></Route>
+            <Route path="community" element={<Community />}></Route>
+            <Route path="*" element={<Error />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </section>
   );
 
   // // new line start

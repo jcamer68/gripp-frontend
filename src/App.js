@@ -14,7 +14,6 @@ import Card from "./components/Card";
 
 function App() {
   return (
-<<<<<<< HEAD
     <section>
       <BrowserRouter>
         <Routes>
@@ -27,19 +26,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </section>
-=======
-    <div>
-      <Card name="Heart Rate" stat={500} details="25% increase"></Card>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />}></Route>
-          <Route path="home" element={<Home />}></Route>
-          <Route path="trends" element={<Trends />}></Route>
-          <Route path="*" element={<Error />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
->>>>>>> 0e0ba02d7373960623d4e2d46faf635f149002ab
   );
 
   // // new line start

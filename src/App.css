@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 @import '../node_modules/@syncfusion/ej2-layouts/styles/material.css';
 @import "../node_modules/@syncfusion/ej2-base/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-react-layouts/styles/material.css";
 
-=======
->>>>>>> e1f9e3aa7dc763a2050debcb49fe1340f654e6a5
 .e-card .e-card-content {
   font-size: 50px;
 }

@@ -2,7 +2,7 @@ import { DashboardLayoutComponent } from "@syncfusion/ej2-react-layouts";
 import Card from "../components/Card";
 import Chart from "../components/Chart";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReadData from "./ReadData";
 
 var uid = 2;
@@ -30,7 +30,7 @@ const Home = () => {
             output_right: d.output_right,
           });
         }
-        setChartData(result)
+        setChartData(result);
       })
       .catch((error) => {
         if (error.response) {
@@ -48,7 +48,7 @@ const Home = () => {
     })
       .then((response) => {
         const res = response.data;
-        setRules(res.data.risks)
+        setRules(res.data.risks);
       })
       .catch((error) => {
         if (error.response) {
@@ -74,14 +74,18 @@ const Home = () => {
         })
           .then((response) => {
             const res = response.data;
-            var left = []
-            var right = []
+            var left = [];
+            var right = [];
             for (const r of res.data) {
-              left.push(r[0])
-              right.push(r[1])
+              left.push(r[0]);
+              right.push(r[1]);
             }
-            left.sort(function(a, b){return Number(a)-Number(b)})
-            right.sort(function(a, b){return Number(a)-Number(b)})
+            left.sort(function (a, b) {
+              return Number(a) - Number(b);
+            });
+            right.sort(function (a, b) {
+              return Number(a) - Number(b);
+            });
 
             axios({
               method: "GET",
@@ -91,27 +95,26 @@ const Home = () => {
                 const res = response.data;
 
                 var recent_left = res.data[res.data.length - 1].output_left;
-                setRecentLeft(recent_left)
+                setRecentLeft(recent_left);
                 var recent_right = res.data[res.data.length - 1].output_right;
-                setRecentRight(recent_right)
+                setRecentRight(recent_right);
 
                 var curr = 0;
                 while (left[curr] < recent_left) {
                   curr += 1;
                 }
 
-                var percentile_left = (curr / left.length) * 100
+                var percentile_left = (curr / left.length) * 100;
 
                 var curr = 0;
                 while (right[curr] < recent_right) {
                   curr += 1;
                 }
 
-                var percentile_right = (curr / right.length) * 100
+                var percentile_right = (curr / right.length) * 100;
 
-                setLeftPercentile(Math.round(percentile_left))
-                setRightPercentile(Math.round(percentile_right))
-
+                setLeftPercentile(Math.round(percentile_left));
+                setRightPercentile(Math.round(percentile_right));
               })
               .catch((error) => {
                 if (error.response) {
@@ -138,10 +141,9 @@ const Home = () => {
       });
   }
 
-  getData(uid)
-  getPercentile(uid)
-  getRules(2)
-
+  getData(uid);
+  getPercentile(uid);
+  getRules(2);
 
   const cellSpacing = [5, 5];
   return (
@@ -207,10 +209,8 @@ const Home = () => {
           >
             <span id="close" className="e-template-icon e-clear-icon" />
             <div className="e-panel-container">
-              <b style={{fontSize: "30px"}}>
-                Danger Zones:
-              </b>
-              <div style={{fontSize: "30px"}}>
+              <b style={{ fontSize: "30px" }}>Danger Zones:</b>
+              <div style={{ fontSize: "30px" }}>
                 {JSON.stringify(rules ? rules[0].name : "")}
               </div>
             </div>
@@ -225,7 +225,11 @@ const Home = () => {
           >
             <span id="close" className="e-template-icon e-clear-icon" />
             <div className="e-panel-container">
-              <ReadData onrun={() => getData(uid)} recent_left={recentLeft} recent_right={recentRight}></ReadData>
+              <ReadData
+                onrun={() => getData(uid)}
+                recent_left={recentLeft}
+                recent_right={recentRight}
+              ></ReadData>
             </div>
           </div>
         </DashboardLayoutComponent>

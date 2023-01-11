@@ -1,5 +1,3 @@
-import { useState } from "react";
-import axios from "axios";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Community from "./pages/Community";
@@ -7,11 +5,7 @@ import Home from "./pages/Home";
 import Trends from "./pages/Trends";
 import Error from "./pages/Error";
 import SharedLayout from "./pages/SharedLayout";
-import Navbar from "./components/Navbar";
 import ReadData from "./pages/ReadData";
-import { Link } from "react-router-dom";
-import Card from "./components/Card";
-// import Setup from "./requests/1-first-request";
 
 function App() {
   return (

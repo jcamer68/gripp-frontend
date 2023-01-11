@@ -4,6 +4,7 @@ import Chart from "../components/Chart";
 import axios from "axios";
 import { useState } from "react";
 import ReadData from "./ReadData";
+import "../App.css";
 
 var uid = 2;
 
@@ -148,11 +149,14 @@ const Home = () => {
   const cellSpacing = [5, 5];
   return (
     <div>
+      <h2 class="homeCenter">Hello user!</h2>
+      <h4 class="homeCenter">Take your daily grip measurement:</h4>
+
       <div className="control-section">
         <DashboardLayoutComponent
           id="defaultLayout"
           cellSpacing={cellSpacing}
-          allowResizing={true}
+          allowResizing={false}
           columns={5}
         >
           <div
@@ -160,37 +164,48 @@ const Home = () => {
             className="e-panel"
             data-row="1"
             data-col="0"
-            data-sizex="5"
-            data-sizey="2"
-          >
-            <span id="close" className="e-template-icon e-clear-icon" />
-            <div className="e-panel-container">
-              <Chart
-                data={chartData}
-                name="Output"
-                xname="date"
-                yname="output_left"
-              ></Chart>
-            </div>
-          </div>
-          <div
-            id="two"
-            className="e-panel"
-            data-row="0"
-            data-col="0"
             data-sizex="1"
             data-sizey="1"
           >
             <span id="close" className="e-template-icon e-clear-icon" />
             <div className="e-panel-container">
-              <Card name="Left Percentile" stat={leftPercentile}></Card>
+              <p>Right Hand</p>
             </div>
           </div>
+
+          <div
+            id="two"
+            className="e-panel"
+            data-row="1"
+            data-col="1"
+            data-sizex="1"
+            data-sizey="1"
+          >
+            <span id="close" className="e-template-icon e-clear-icon" />
+            <div className="e-panel-container">
+              <p>Left Hand</p>
+            </div>
+          </div>
+
           <div
             id="three"
             className="e-panel"
-            data-row="0"
-            data-col="1"
+            data-row="1"
+            data-col="2"
+            data-sizex="3"
+            data-sizey="1"
+          >
+            <span id="close" className="e-template-icon e-clear-icon" />
+            <div className="e-panel-container">
+              <p>Readiness Score</p>
+            </div>
+          </div>
+
+          <div
+            id="four"
+            className="e-panel"
+            data-row="2"
+            data-col="0"
             data-sizex="1"
             data-sizey="1"
           >
@@ -200,11 +215,25 @@ const Home = () => {
             </div>
           </div>
           <div
-            id="four"
+            id="five"
             className="e-panel"
-            data-row="0"
+            data-row="2"
+            data-col="1"
+            data-sizex="1"
+            data-sizey="1"
+          >
+            <span id="close" className="e-template-icon e-clear-icon" />
+            <div className="e-panel-container">
+              <Card name="Left Percentile" stat={leftPercentile}></Card>
+            </div>
+          </div>
+
+          <div
+            id="six"
+            className="e-panel"
+            data-row="2"
             data-col="2"
-            data-sizex="2"
+            data-sizex="3"
             data-sizey="1"
           >
             <span id="close" className="e-template-icon e-clear-icon" />
@@ -215,12 +244,13 @@ const Home = () => {
               </div>
             </div>
           </div>
+
           <div
-            id="five"
+            id="remove"
             className="e-panel"
             data-row="0"
-            data-col="4"
-            data-sizex="1"
+            data-col="0"
+            data-sizex="5"
             data-sizey="1"
           >
             <span id="close" className="e-template-icon e-clear-icon" />

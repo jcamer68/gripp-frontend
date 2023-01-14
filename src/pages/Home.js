@@ -238,7 +238,7 @@ const Home = () => {
           >
             <span id="close" className="e-template-icon e-clear-icon" />
             <div className="e-panel-container">
-              <b style={{ fontSize: "30px" }}>Danger Zones:</b>
+              <p className="panelHeader">Danger Zones</p>
               <div style={{ fontSize: "30px" }}>
                 {JSON.stringify(rules ? rules[0].name : "")}
               </div>

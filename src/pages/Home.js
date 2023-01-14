@@ -149,8 +149,8 @@ const Home = () => {
   const cellSpacing = [5, 5];
   return (
     <div>
-      <h2 class="homeCenter">Hello user!</h2>
-      <h4 class="homeCenter">Take your daily grip measurement:</h4>
+      <h2 className="homeCenter">Hello user!</h2>
+      <h4 className="homeCenter">Take your daily grip measurement:</h4>
 
       <div className="control-section">
         <DashboardLayoutComponent

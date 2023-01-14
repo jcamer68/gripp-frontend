@@ -1,53 +1,43 @@
-import { DashboardLayoutComponent } from "@syncfusion/ej2-react-layouts";
-import Chart from "../components/Chart";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TrendChart from "../components/TrendChart";
 
-var userId = 2;
-
 const Trends = () => {
-  const [chartData, setChartData] = useState();
+  const [chartData, setChartData] = useState([]);
+  var userId = 2;
 
-  function getData(userid) {
+  useEffect(() => {
     axios({
       method: "GET",
-      url: `http://127.0.0.1:5000/measure/${userid}`,
+      url: `http://127.0.0.1:5000/measure/${userId}`,
     })
-      .then((response) => {
-        console.log("yo");
-        const res = response.data;
+      .then((response) => response["data"])
+      .then((res) => {
+        console.log(res["data"]);
         var result = [];
-        for (const d of res.data) {
+        for (const d of res["data"]) {
           result.push({
-            date: d.date,
+            date:
+              new Date(d.date).getUTCMonth() +
+              1 +
+              "/" +
+              new Date(d.date).getUTCDate(),
             output_left: d.output_left,
             output_right: d.output_right,
           });
         }
         setChartData(result);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
       });
-  }
-
-  getData(userId);
+  }, []);
 
   return (
     <div>
-      <h4 class="homeCenter">Exerted Grip Strength (lbs)</h4>
+      <h4 className="homeCenter">Exerted Grip Strength (lbs)</h4>
       <div>
         <TrendChart data={chartData}></TrendChart>
       </div>
     </div>
   );
 };
-
-<section className="section"></section>;
 
 export default Trends;

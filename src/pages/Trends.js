@@ -24,6 +24,7 @@ const Trends = () => {
               new Date(d.date).getUTCDate(),
             output_left: d.output_left,
             output_right: d.output_right,
+            output_average: (d.output_left + d.output_right) / 2,
           });
         }
         setChartData(result);
@@ -34,7 +35,7 @@ const Trends = () => {
     <div>
       <h4 className="homeCenter">Exerted Grip Strength (lbs)</h4>
       <div>
-        <TrendChart data={chartData}></TrendChart>
+        <TrendChart data={chartData} />
       </div>
     </div>
   );

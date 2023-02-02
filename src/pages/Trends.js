@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TrendChart from "../components/TrendChart";
+import Header from "../components/Header";
 
 const Trends = () => {
   const [chartData, setChartData] = useState([]);
@@ -32,12 +33,15 @@ const Trends = () => {
   }, []);
 
   return (
-    <div>
-      <h4 className="homeCenter">Exerted Grip Strength (lbs)</h4>
+    <>
+      <Header />
       <div>
-        <TrendChart data={chartData} />
+        <h4 className="homeCenter">Exerted Grip Strength (lbs)</h4>
+        <div>
+          <TrendChart data={chartData} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

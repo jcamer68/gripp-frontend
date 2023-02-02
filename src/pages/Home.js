@@ -1,14 +1,15 @@
 import { DashboardLayoutComponent } from "@syncfusion/ej2-react-layouts";
 import Card from "../components/Card";
+import Header from "../components/Header";
 import Chart from "../components/Chart";
 import axios from "axios";
 import { useState } from "react";
 import ReadData from "./ReadData";
 import "../App.css";
-
-var uid = 2;
+import React from "react";
 
 const Home = () => {
+  const uid = 2;
   const [chartData, setChartData] = useState();
   const [leftPercentile, setLeftPercentile] = useState();
   const [rightPercentile, setRightPercentile] = useState();
@@ -147,124 +148,129 @@ const Home = () => {
   getRules(2);
 
   const cellSpacing = [5, 5];
+
   return (
-    <div>
-      <h2 className="homeCenter">Hello user!</h2>
-      <h4 className="homeCenter">Take your daily grip measurement:</h4>
+    <>
+      <Header />
 
-      <div className="control-section">
-        <DashboardLayoutComponent
-          id="defaultLayout"
-          cellSpacing={cellSpacing}
-          allowResizing={false}
-          columns={5}
-        >
-          <div
-            id="one"
-            className="e-panel"
-            data-row="1"
-            data-col="0"
-            data-sizex="1"
-            data-sizey="1"
-          >
-            <span id="close" className="e-template-icon e-clear-icon" />
-            <div className="e-panel-container">
-              <p>Right Hand</p>
-            </div>
-          </div>
+      <div>
+        <h2 className="homeCenter">Hello user!</h2>
+        <h4 className="homeCenter">Take your daily grip measurement:</h4>
 
-          <div
-            id="two"
-            className="e-panel"
-            data-row="1"
-            data-col="1"
-            data-sizex="1"
-            data-sizey="1"
+        <div className="control-section">
+          <DashboardLayoutComponent
+            id="defaultLayout"
+            cellSpacing={cellSpacing}
+            allowResizing={false}
+            columns={5}
           >
-            <span id="close" className="e-template-icon e-clear-icon" />
-            <div className="e-panel-container">
-              <p>Left Hand</p>
-            </div>
-          </div>
-
-          <div
-            id="three"
-            className="e-panel"
-            data-row="1"
-            data-col="2"
-            data-sizex="3"
-            data-sizey="1"
-          >
-            <span id="close" className="e-template-icon e-clear-icon" />
-            <div className="e-panel-container">
-              <p>Readiness Score</p>
-            </div>
-          </div>
-
-          <div
-            id="four"
-            className="e-panel"
-            data-row="2"
-            data-col="0"
-            data-sizex="1"
-            data-sizey="1"
-          >
-            <span id="close" className="e-template-icon e-clear-icon" />
-            <div className="e-panel-container">
-              <Card name="Right Percentile" stat={rightPercentile}></Card>
-            </div>
-          </div>
-          <div
-            id="five"
-            className="e-panel"
-            data-row="2"
-            data-col="1"
-            data-sizex="1"
-            data-sizey="1"
-          >
-            <span id="close" className="e-template-icon e-clear-icon" />
-            <div className="e-panel-container">
-              <Card name="Left Percentile" stat={leftPercentile}></Card>
-            </div>
-          </div>
-
-          <div
-            id="six"
-            className="e-panel"
-            data-row="2"
-            data-col="2"
-            data-sizex="3"
-            data-sizey="1"
-          >
-            <span id="close" className="e-template-icon e-clear-icon" />
-            <div className="e-panel-container">
-              <p className="panelHeader">Danger Zones</p>
-              <div style={{ fontSize: "30px" }}>
-                {JSON.stringify(rules ? rules[0].name : "")}
+            <div
+              id="one"
+              className="e-panel"
+              data-row="1"
+              data-col="0"
+              data-sizex="1"
+              data-sizey="1"
+            >
+              <span id="close" className="e-template-icon e-clear-icon" />
+              <div className="e-panel-container">
+                <p>Right Hand</p>
               </div>
             </div>
-          </div>
 
-          <div
-            id="remove"
-            className="e-panel"
-            data-row="0"
-            data-col="0"
-            data-sizex="5"
-            data-sizey="1"
-          >
-            <span id="close" className="e-template-icon e-clear-icon" />
-            <div className="e-panel-container">
-              <ReadData
-                onrun={() => getData(uid)}
-                recent_left={recentLeft}
-                recent_right={recentRight}
-              ></ReadData>
+            <div
+              id="two"
+              className="e-panel"
+              data-row="1"
+              data-col="1"
+              data-sizex="1"
+              data-sizey="1"
+            >
+              <span id="close" className="e-template-icon e-clear-icon" />
+              <div className="e-panel-container">
+                <p>Left Hand</p>
+              </div>
             </div>
-          </div>
-        </DashboardLayoutComponent>
+
+            <div
+              id="three"
+              className="e-panel"
+              data-row="1"
+              data-col="2"
+              data-sizex="3"
+              data-sizey="1"
+            >
+              <span id="close" className="e-template-icon e-clear-icon" />
+              <div className="e-panel-container">
+                <p>Readiness Score</p>
+              </div>
+            </div>
+
+            <div
+              id="four"
+              className="e-panel"
+              data-row="2"
+              data-col="0"
+              data-sizex="1"
+              data-sizey="1"
+            >
+              <span id="close" className="e-template-icon e-clear-icon" />
+              <div className="e-panel-container">
+                <Card name="Right Percentile" stat={rightPercentile}></Card>
+              </div>
+            </div>
+            <div
+              id="five"
+              className="e-panel"
+              data-row="2"
+              data-col="1"
+              data-sizex="1"
+              data-sizey="1"
+            >
+              <span id="close" className="e-template-icon e-clear-icon" />
+              <div className="e-panel-container">
+                <Card name="Left Percentile" stat={leftPercentile}></Card>
+              </div>
+            </div>
+
+            <div
+              id="six"
+              className="e-panel"
+              data-row="2"
+              data-col="2"
+              data-sizex="3"
+              data-sizey="1"
+            >
+              <span id="close" className="e-template-icon e-clear-icon" />
+              <div className="e-panel-container">
+                <p className="panelHeader">Danger Zones</p>
+                <div style={{ fontSize: "30px" }}>
+                  {JSON.stringify(rules ? rules[0].name : "")}
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="remove"
+              className="e-panel"
+              data-row="0"
+              data-col="0"
+              data-sizex="5"
+              data-sizey="1"
+            >
+              <span id="close" className="e-template-icon e-clear-icon" />
+              <div className="e-panel-container">
+                <ReadData
+                  onrun={() => getData(uid)}
+                  recent_left={recentLeft}
+                  recent_right={recentRight}
+                ></ReadData>
+              </div>
+            </div>
+          </DashboardLayoutComponent>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -74,31 +74,33 @@ const ReadData = ({ onrun, recent_left, recent_right }) => {
   }
 
   return (
-    <div>
-      <button onClick={() => readData("left")}>Left Hand</button>
-      <div style={{ fontSize: "30px" }}>
-        {leftHand}{" "}
-        <span style={{ fontSize: "15px" }}>
-          {recent_left && leftHand
-            ? Math.round(((leftHand - recent_left) / recent_left) * 100) +
-              "% change"
-            : ""}
-        </span>
+    <>
+      <div>
+        <button onClick={() => readData("left")}>Left Hand</button>
+        <div style={{ fontSize: "30px" }}>
+          {leftHand}{" "}
+          <span style={{ fontSize: "15px" }}>
+            {recent_left && leftHand
+              ? Math.round(((leftHand - recent_left) / recent_left) * 100) +
+                "% change"
+              : ""}
+          </span>
+        </div>
+        <button onClick={() => readData("right")}>Right Hand</button>
+        <div style={{ fontSize: "30px" }}>
+          {rightHand}{" "}
+          <span style={{ fontSize: "15px" }}>
+            {recent_right && rightHand
+              ? Math.round(((rightHand - recent_right) / recent_right) * 100) +
+                "% change"
+              : ""}
+          </span>
+        </div>
+        <button onClick={() => publish(uid)}>Publish</button>
+        <button onClick={() => calibrate()}>Calibrate</button>
+        <div>{status}</div>
       </div>
-      <button onClick={() => readData("right")}>Right Hand</button>
-      <div style={{ fontSize: "30px" }}>
-        {rightHand}{" "}
-        <span style={{ fontSize: "15px" }}>
-          {recent_right && rightHand
-            ? Math.round(((rightHand - recent_right) / recent_right) * 100) +
-              "% change"
-            : ""}
-        </span>
-      </div>
-      <button onClick={() => publish(uid)}>Publish</button>
-      <button onClick={() => calibrate()}>Calibrate</button>
-      <div>{status}</div>
-    </div>
+    </>
   );
 };
 

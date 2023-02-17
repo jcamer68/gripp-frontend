@@ -151,8 +151,6 @@ const Home = () => {
 
   return (
     <>
-      <Header />
-
       <div>
         <h2 className="homeCenter">Hello user!</h2>
         <h4 className="homeCenter">Take your daily grip measurement:</h4>

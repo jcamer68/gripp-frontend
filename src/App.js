@@ -1,30 +1,60 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { ChakraProvider, theme } from "@chakra-ui/react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Community from "./pages/Community";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Trends from "./pages/Trends";
+import PageTemplate from "./pages/PageTemplate";
 import Error from "./pages/Error";
 import SharedLayout from "./pages/SharedLayout";
 import ReadData from "./pages/ReadData";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Login />,
+  },
+  {
+    path: "/home",
+    element: <PageTemplate ChildElement={Home} name="home" />,
+  },
+  {
+    path: "/trends",
+    element: <PageTemplate ChildElement={Trends} name="trends" />,
+  },
+]);
+
 function App() {
   return (
-    <section>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />}></Route>
-            <Route path="trends" element={<Trends />}></Route>
-            <Route path="community" element={<Community />}></Route>
-            <Route path="readdata" element={<ReadData />}></Route>
-            <Route path="*" element={<Error />}></Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </section>
+    <ChakraProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   );
 }
+
 export default App;
+
+// function App() {
+//   return (
+//     <section>
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path="/" element={<SharedLayout />}>
+//             <Route index element={<Home />}></Route>
+//             <Route path="login" element={<Login />}></Route>
+//             <Route path="trends" element={<Trends />}></Route>
+//             <Route path="community" element={<Community />}></Route>
+//             <Route path="readdata" element={<ReadData />}></Route>
+//             <Route path="*" element={<Error />}></Route>
+//           </Route>
+//         </Routes>
+//       </BrowserRouter>
+//     </section>
+//   );
+// }
+// export default App;
 
 // // new line start
 // const [profileData, setProfileData] = useState(null);

@@ -34,7 +34,6 @@ const Trends = () => {
 
   return (
     <>
-      <Header />
       <div>
         <h4 className="homeCenter">Exerted Grip Strength (lbs)</h4>
         <div>

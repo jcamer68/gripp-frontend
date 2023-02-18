@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TrendChart from "../components/TrendChart";
-
+import { Select } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 
 const Trends = () => {
   const [chartData, setChartData] = useState([]);
+  const [chartChoice, setChartChoice] = useState("both");
   var userId = 2;
+  const text1 = "both";
 
   useEffect(() => {
     axios({
@@ -33,15 +35,22 @@ const Trends = () => {
       });
   }, []);
 
+  const handleSelectChange = (e) => {
+    setChartChoice(e.target.value); //update state with selected value
+  };
+
   return (
     <>
       <Heading size="lg" color={"#3D4857"} mb="5">
         Trends
       </Heading>
+      <Select placeholder="Select option" onChange={handleSelectChange}>
+        <option value="right">Right Hand</option>
+        <option value="left">Left Hand</option>
+        <option value="both">Average</option>
+      </Select>
       <div>
-        <div>
-          <TrendChart data={chartData} />
-        </div>
+        <TrendChart data={chartData} chartSelection={chartChoice} />
       </div>
     </>
   );

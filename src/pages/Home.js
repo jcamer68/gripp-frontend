@@ -7,6 +7,8 @@ import { useState } from "react";
 import ReadData from "./ReadData";
 import "../App.css";
 import React from "react";
+import { Box } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
 const Home = () => {
   const uid = 2;
@@ -151,9 +153,21 @@ const Home = () => {
 
   return (
     <>
+      <Box bg="#FBBA9C" w="100%" p={4} h="200" borderRadius="20">
+        <Heading size="lg" align="middle" mt={"30"} mb={"25"}>
+          Good Morning, Myles!
+        </Heading>
+        <Box bg="white" w="100%" p={4} color="#3D4857" borderRadius="20">
+          <Heading size="md" align="middle" text>
+            Start your day by measuring your grip strength
+          </Heading>
+        </Box>
+      </Box>
+
       <div>
-        <h2 className="homeCenter">Hello user!</h2>
-        <h4 className="homeCenter">Take your daily grip measurement:</h4>
+        <Heading size="lg" color="#3D4857" mt="12" mb="4">
+          Your Latest Activities
+        </Heading>
 
         <div className="control-section">
           <DashboardLayoutComponent

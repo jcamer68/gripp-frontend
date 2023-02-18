@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import TrendChart from "../components/TrendChart";
 import Header from "../components/Header";
+import { Heading } from "@chakra-ui/react";
 
 const Trends = () => {
   const [chartData, setChartData] = useState([]);
@@ -34,6 +35,7 @@ const Trends = () => {
 
   return (
     <>
+      <Heading>Trends</Heading>
       <div>
         <h4 className="homeCenter">Exerted Grip Strength (lbs)</h4>
         <div>

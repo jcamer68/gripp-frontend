@@ -8,6 +8,8 @@ import {
   Tooltip,
 } from "recharts";
 import { Heading } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 const data1 = [{ name: "Page A", uv: 400, pv: 2400, amt: 2400 }];
 
@@ -27,39 +29,45 @@ function TrendChart(data, dataSelection) {
         <Tooltip />
       </LineChart> */}
 
-      <LineChart width={900} height={450} data={data["data"]}>
-        <text
-          x={500 / 2}
-          y={20}
-          fill="#3D4857"
-          textAnchor="middle"
-          dominantBaseline="central"
-        >
-          <tspan fontSize="20">Exerted Grip Strength (lbs) - Right Hand</tspan>
-        </text>
-        <Line type="monotone" dataKey="output_right" stroke="#22D1EE" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="date" />
-        <YAxis />
-        <Tooltip />
-      </LineChart>
+      <Box
+        bg="white"
+        border={"1px"}
+        borderColor="gray.200"
+        margin={"30"}
+        borderRadius="5"
+      >
+        {" "}
+        <Heading color={"#3D4857"} size="md" m={"8"} fontWeight="regular">
+          Exerted Grip Strength (lbs) - Right Hand
+        </Heading>
+        <LineChart width={900} height={450} data={data["data"]}>
+          <Line type="monotone" dataKey="output_right" stroke="#22D1EE" />
+          <CartesianGrid stroke="#ccc" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+        </LineChart>
+      </Box>
 
-      <LineChart width={900} height={450} data={data["data"]}>
-        <text
-          x={500 / 2}
-          y={20}
-          fill="#3D4857"
-          textAnchor="middle"
-          dominantBaseline="central"
-        >
-          <tspan fontSize="20">Exerted Grip Strength (lbs) - Left Hand</tspan>
-        </text>
-        <Line type="monotone" dataKey="output_left" stroke="#3D5AF1" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="date" />
-        <YAxis />
-        <Tooltip />
-      </LineChart>
+      <Box
+        bg="white"
+        border={"1px"}
+        borderColor="gray.200"
+        margin={"30"}
+        borderRadius="5"
+      >
+        {" "}
+        <Heading color={"#3D4857"} size="md" m={"8"} fontWeight="regular">
+          Exerted Grip Strength (lbs) - Left Hand
+        </Heading>
+        <LineChart width={900} height={450} data={data["data"]}>
+          <Line type="monotone" dataKey="output_left" stroke="#3D5AF1" />
+          <CartesianGrid stroke="#ccc" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+        </LineChart>
+      </Box>
     </>
   );
 }

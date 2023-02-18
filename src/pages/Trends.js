@@ -35,9 +35,10 @@ const Trends = () => {
 
   return (
     <>
-      <Heading>Trends</Heading>
+      <Heading size="lg" color={"#3D4857"} mb="5">
+        Trends
+      </Heading>
       <div>
-        <h4 className="homeCenter">Exerted Grip Strength (lbs)</h4>
         <div>
           <TrendChart data={chartData} />
         </div>

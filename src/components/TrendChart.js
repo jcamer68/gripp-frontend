@@ -7,6 +7,7 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
+import { Heading } from "@chakra-ui/react";
 
 const data1 = [{ name: "Page A", uv: 400, pv: 2400, amt: 2400 }];
 
@@ -17,17 +18,25 @@ function TrendChart(data, dataSelection) {
   console.log(dataSelection);
   return (
     <>
-      <h3>Average Output (lbs)</h3>
+      {/* <h3>Average Output (lbs)</h3>
       <LineChart width={900} height={450} data={data["data"]}>
         <Line type="monotone" dataKey="output_average" stroke="#FF7A3C" />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
-      </LineChart>
+      </LineChart> */}
 
-      <h3>Right-Hand Output (lbs)</h3>
       <LineChart width={900} height={450} data={data["data"]}>
+        <text
+          x={500 / 2}
+          y={20}
+          fill="#3D4857"
+          textAnchor="middle"
+          dominantBaseline="central"
+        >
+          <tspan fontSize="20">Exerted Grip Strength (lbs) - Right Hand</tspan>
+        </text>
         <Line type="monotone" dataKey="output_right" stroke="#22D1EE" />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="date" />
@@ -35,8 +44,16 @@ function TrendChart(data, dataSelection) {
         <Tooltip />
       </LineChart>
 
-      <h3>Left-Hand Output (lbs)</h3>
       <LineChart width={900} height={450} data={data["data"]}>
+        <text
+          x={500 / 2}
+          y={20}
+          fill="#3D4857"
+          textAnchor="middle"
+          dominantBaseline="central"
+        >
+          <tspan fontSize="20">Exerted Grip Strength (lbs) - Left Hand</tspan>
+        </text>
         <Line type="monotone" dataKey="output_left" stroke="#3D5AF1" />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="date" />

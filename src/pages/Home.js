@@ -1,5 +1,4 @@
 import Card from "../components/Card";
-
 import axios from "axios";
 import { useState } from "react";
 import ReadData from "./ReadData";
@@ -10,7 +9,7 @@ import { Heading } from "@chakra-ui/react";
 
 const Home = () => {
   const uid = 2;
-  const [chartData, setChartData] = useState();
+
   const [leftPercentile, setLeftPercentile] = useState();
   const [rightPercentile, setRightPercentile] = useState();
   const [recentLeft, setRecentLeft] = useState();
@@ -32,7 +31,7 @@ const Home = () => {
             output_right: d.output_right,
           });
         }
-        setChartData(result);
+        console.log(result);
       })
       .catch((error) => {
         if (error.response) {
@@ -43,23 +42,23 @@ const Home = () => {
       });
   }
 
-  function getRules(measureid) {
-    axios({
-      method: "GET",
-      url: `http://127.0.0.1:5000/measure/rules/${measureid}`,
-    })
-      .then((response) => {
-        const res = response.data;
-        setRules(res.data.risks);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-  }
+  // function getRules(measureid) {
+  //   axios({
+  //     method: "GET",
+  //     url: `http://127.0.0.1:5000/measure/rules/${measureid}`,
+  //   })
+  //     .then((response) => {
+  //       const res = response.data;
+  //       setRules(res.data.risks);
+  //     })
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         console.log(error.response);
+  //         console.log(error.response.status);
+  //         console.log(error.response.headers);
+  //       }
+  //     });
+  // }
 
   function getPercentile(userid) {
     axios({
@@ -95,10 +94,13 @@ const Home = () => {
             })
               .then((response) => {
                 const res = response.data;
+                console.log(res);
 
                 var recent_left = res.data[res.data.length - 1].output_left;
+                console.log(recent_left);
                 setRecentLeft(recent_left);
                 var recent_right = res.data[res.data.length - 1].output_right;
+                console.log(recent_right);
                 setRecentRight(recent_right);
 
                 var curr = 0;
@@ -145,7 +147,7 @@ const Home = () => {
 
   getData(uid);
   getPercentile(uid);
-  getRules(2);
+  // getRules(2);
 
   const cellSpacing = [5, 5];
 

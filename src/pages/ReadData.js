@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Button } from "@chakra-ui/react";
 
 var uid = 2;
 
@@ -76,7 +77,9 @@ const ReadData = ({ onrun, recent_left, recent_right }) => {
   return (
     <>
       <div>
-        <button onClick={() => readData("left")}>Left Hand</button>
+        <Button colorScheme="blue" onClick={() => readData("left")} m="5">
+          Left Hand
+        </Button>
         <div style={{ fontSize: "30px" }}>
           {leftHand}{" "}
           <span style={{ fontSize: "15px" }}>
@@ -86,7 +89,10 @@ const ReadData = ({ onrun, recent_left, recent_right }) => {
               : ""}
           </span>
         </div>
-        <button onClick={() => readData("right")}>Right Hand</button>
+        <Button colorScheme="blue" onClick={() => readData("right")} m="5">
+          Right Hand
+        </Button>
+
         <div style={{ fontSize: "30px" }}>
           {rightHand}{" "}
           <span style={{ fontSize: "15px" }}>
@@ -96,8 +102,13 @@ const ReadData = ({ onrun, recent_left, recent_right }) => {
               : ""}
           </span>
         </div>
-        <button onClick={() => publish(uid)}>Publish</button>
-        <button onClick={() => calibrate()}>Calibrate</button>
+        <Button colorScheme="blue" onClick={() => publish(uid)} m="5">
+          Publish
+        </Button>
+        <Button colorScheme="blue" onClick={() => calibrate()} m="5">
+          Calibrate
+        </Button>
+
         <div>{status}</div>
       </div>
     </>

@@ -7,8 +7,6 @@ import {
   Image,
   Hide,
   Flex,
-  Box,
-  Heading,
   Text,
   Input,
   InputGroup,
@@ -16,7 +14,6 @@ import {
   Stack,
   Button,
   Link,
-  Icon,
 } from "@chakra-ui/react";
 import { LockIcon, EmailIcon } from "@chakra-ui/icons";
 

@@ -1,7 +1,5 @@
-import { DashboardLayoutComponent } from "@syncfusion/ej2-react-layouts";
 import Card from "../components/Card";
-import Header from "../components/Header";
-import Chart from "../components/Chart";
+
 import axios from "axios";
 import { useState } from "react";
 import ReadData from "./ReadData";

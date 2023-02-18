@@ -30,7 +30,7 @@ function TrendChart({ data, chartSelection }) {
           <Heading color={"#3D4857"} size="md" m={"8"} fontWeight="regular">
             Exerted Grip Strength (lbs) - Average
           </Heading>
-          <LineChart width={900} height={450} data={data}>
+          <LineChart width={900} height={450} data={data} margin={"0"}>
             <Line type="monotone" dataKey="output_average" stroke="#FF7A3C" />
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="date" />

@@ -10,16 +10,11 @@ import {
   Icon,
   Link,
 } from "@chakra-ui/react";
-import {
-  FaChalkboardTeacher,
-  FaUserEdit,
-  FaUserPlus,
-  FaWrench,
-} from "react-icons/fa";
+import { FaHome, FaChartLine } from "react-icons/fa";
 
 const buttons = [
-  { id: "home", label: "Home", icon: FaChalkboardTeacher },
-  { id: "trends", label: "Trends", icon: FaUserEdit },
+  { id: "home", label: "Home", icon: FaHome },
+  { id: "trends", label: "Trends", icon: FaChartLine },
 ];
 
 function ActiveButton({ id, icon, label }) {
@@ -30,10 +25,10 @@ function ActiveButton({ id, icon, label }) {
         leftIcon={<Icon as={icon} me={1} />}
         color="blue.600"
         bg="blue.100"
-        variant="solid"
+        variant="ghost"
         justifyContent="flex-start"
         fontWeight="bold"
-        _hover={{ bg: "#D6BCFA" }}
+        _hover={{ bg: "#E3F2FD" }}
       >
         {label}
       </Button>
@@ -48,7 +43,7 @@ function NonActiveButton({ id, icon, label }) {
         w="100%"
         leftIcon={<Icon as={icon} me={1} />}
         colorScheme="blue"
-        variant="outline"
+        variant="ghost"
         justifyContent="flex-start"
       >
         {label}
@@ -61,7 +56,7 @@ function Sidebar({ name }) {
   const buttonItems = buttons.map(({ id, label, icon }) => {
     console.log(name, id, name === id);
     return id === name ? (
-      <ActiveButton key={id} id={id} label={label} />
+      <ActiveButton key={id} id={id} label={label} icon={icon} />
     ) : (
       <NonActiveButton key={id} id={id} label={label} icon={icon} />
     );

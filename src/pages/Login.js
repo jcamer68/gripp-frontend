@@ -13,14 +13,18 @@ import React, {
   Stack,
   Button,
   Link,
+  Divider,
+  IconButton,
 } from "@chakra-ui/react";
 import { LockIcon, EmailIcon } from "@chakra-ui/icons";
+
+import { FaGoogle } from "react-icons/fa";
 
 function Login() {
   return (
     <Grid h="100vh" templateColumns="repeat(12, 1fr)">
       <GridItem colSpan={["12", "4"]}>
-        <Flex direction="column" mt="10" mx="20">
+        <Flex direction="column" mx="20">
           <Flex mb="">
             <Image
               src={grippLogo}
@@ -55,6 +59,29 @@ function Login() {
                 <Button w="100%" colorScheme="blue">
                   Log In
                 </Button>
+              </Link>
+              <Divider
+                mt={"100"}
+                orientation="horizontal"
+                borderWidth="1px"
+                borderColor="gray.200"
+              />
+              <Link href="/home">
+                <Button w="100%" colorScheme="blue">
+                  Sign Up With Email
+                </Button>
+              </Link>
+              <Link href="/home" bg={"gray.100"}>
+                <Stack direction={["column", "row"]} spacing="24px">
+                  <Button w="100%" colorScheme="white" color={"black"}>
+                    <IconButton
+                      variant="outline"
+                      icon={<FaGoogle />}
+                      mr={"3"}
+                    ></IconButton>
+                    Sign In with Google
+                  </Button>
+                </Stack>
               </Link>
             </Stack>
           </form>

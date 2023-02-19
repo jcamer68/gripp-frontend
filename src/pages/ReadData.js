@@ -76,7 +76,7 @@ const ReadData = ({ onrun, recent_left, recent_right }) => {
   return (
     <>
       <div>
-        <Button colorScheme="blue" onClick={() => readData("left")} m="5">
+        <Button colorScheme="blue" onClick={() => readData("left")} m="4">
           Left Hand
         </Button>
         <div style={{ fontSize: "30px" }}>
@@ -88,7 +88,7 @@ const ReadData = ({ onrun, recent_left, recent_right }) => {
               : ""}
           </span>
         </div>
-        <Button colorScheme="blue" onClick={() => readData("right")} m="5">
+        <Button colorScheme="blue" onClick={() => readData("right")} m="4">
           Right Hand
         </Button>
 
@@ -101,10 +101,10 @@ const ReadData = ({ onrun, recent_left, recent_right }) => {
               : ""}
           </span>
         </div>
-        <Button colorScheme="blue" onClick={() => publish(uid)} m="5">
+        <Button colorScheme="blue" onClick={() => publish(uid)} m="4">
           Publish
         </Button>
-        <Button colorScheme="blue" onClick={() => calibrate()} m="5">
+        <Button colorScheme="blue" onClick={() => calibrate()} m="4">
           Calibrate
         </Button>
 

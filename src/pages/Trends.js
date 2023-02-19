@@ -42,11 +42,11 @@ const Trends = () => {
         Trends
       </Heading>
 
-      <Grid h="100vh" templateColumns="repeat(12, 1fr)" mt={"30"}>
-        <GridItem colSpan={["12", "8"]} mr={"4"}>
+      <Grid h="100vh" templateColumns="repeat(12, 1fr)" mt={"30"} gap={10}>
+        <GridItem colSpan={["12", "8"]}>
           <TrendChart data={chartData} />
         </GridItem>
-        <GridItem colSpan={["12", "4"]} ml={"4"}>
+        <GridItem colSpan={["12", "4"]}>
           <Hide below="lg">
             <Box
               bg="white"

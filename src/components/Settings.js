@@ -22,12 +22,13 @@ function Settings() {
     <>
       <Button
         onClick={onOpen}
-        w="100%"
+        w="87%"
         mt={"3"}
         leftIcon={<Icon as={FaSlidersH} me={1} />}
         colorScheme="gray"
         variant="ghost"
         justifyContent="flex-start"
+        mx="4"
       >
         Settings
       </Button>

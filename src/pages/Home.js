@@ -166,11 +166,11 @@ const Home = () => {
         </Heading>
 
         <Grid
-          h="20vh"
+          h="18vh"
           templateRows="repeat(2, 1fr)"
           templateColumns="repeat(2, 1fr)"
           mt={"30"}
-          gap={10}
+          gap={8}
         >
           <GridItem colSpan={1}>
             <Box bg={"green.100"} p="10">

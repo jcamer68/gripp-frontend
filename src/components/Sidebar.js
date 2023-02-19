@@ -64,17 +64,18 @@ function Sidebar({ name }) {
   });
 
   return (
-    <Flex direction="column" mt="5" mx="5">
+    <Flex direction="column" mt="5">
       <Avatar
         name="John Cameron"
         size="xl"
         src="https://bit.ly/dan-abramov"
         mb="2"
+        mx="4"
       />
-      <Text fontSize="3xl" as="b">
+      <Text fontSize="3xl" as="b" mx="4">
         Myles MacDonald
       </Text>
-      <Text fontSize="sm" color="blue.600" as="b">
+      <Text fontSize="sm" color="blue.600" as="b" mx="4">
         REGULAR USER
       </Text>
       <Divider
@@ -84,13 +85,13 @@ function Sidebar({ name }) {
         borderColor="gray.200"
       />
 
-      <Stack spacing={2} mt={2}>
+      <Stack spacing={2} mt={2} mx="4">
         {buttonItems}
       </Stack>
 
       <Divider
         orientation="horizontal"
-        mt="205%"
+        mt="175%"
         borderWidth="1px"
         borderColor="gray.200"
       />

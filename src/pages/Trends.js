@@ -4,11 +4,26 @@ import TrendChart from "../components/TrendChart";
 import { Select } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 
+import {
+  Grid,
+  GridItem,
+  Image,
+  Hide,
+  Flex,
+  Text,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Stack,
+  Button,
+  Link,
+  Box,
+} from "@chakra-ui/react";
+
 const Trends = () => {
   const [chartData, setChartData] = useState([]);
-  const [chartChoice, setChartChoice] = useState("both");
+
   var userId = 2;
-  const text1 = "both";
 
   useEffect(() => {
     axios({
@@ -35,23 +50,37 @@ const Trends = () => {
       });
   }, []);
 
-  const handleSelectChange = (e) => {
-    setChartChoice(e.target.value); //update state with selected value
-  };
-
   return (
     <>
       <Heading size="lg" color={"#3D4857"} mb="5">
         Trends
       </Heading>
-      <Select placeholder="Select option" onChange={handleSelectChange}>
-        <option value="right">Right Hand</option>
-        <option value="left">Left Hand</option>
-        <option value="both">Average</option>
-      </Select>
-      <div>
-        <TrendChart data={chartData} chartSelection={chartChoice} />
-      </div>
+
+      <Grid h="100vh" templateColumns="repeat(12, 1fr)" mt={"30"}>
+        <GridItem colSpan={["12", "8"]} mr={"4"}>
+          <TrendChart data={chartData} />
+        </GridItem>
+        <GridItem colSpan={["12", "4"]} ml={"4"}>
+          <Hide below="lg">
+            <Box
+              bg="white"
+              border={"1px"}
+              borderColor="gray.200"
+              borderRadius="5"
+            >
+              <Heading
+                color={"#3D4857"}
+                size="md"
+                m={"8"}
+                fontWeight="regular"
+                align="middle"
+              >
+                Friends
+              </Heading>
+            </Box>
+          </Hide>
+        </GridItem>
+      </Grid>
     </>
   );
 };

@@ -6,8 +6,10 @@ import { ColorModeScript } from "@chakra-ui/react";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <StrictMode>
+  // <StrictMode>
+  <>
     <ColorModeScript />
     <App />
-  </StrictMode>
+  </>
+  // </StrictMode>
 );

@@ -1,6 +1,6 @@
 import Card from "../components/Card";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReadData from "./ReadData";
 import "../App.css";
 import React from "react";
@@ -31,7 +31,6 @@ const Home = () => {
             output_right: d.output_right,
           });
         }
-        console.log(result);
       })
       .catch((error) => {
         if (error.response) {
@@ -65,76 +64,65 @@ const Home = () => {
       method: "GET",
       url: `http://127.0.0.1:5000/user/${userid}`,
     })
+    .then((response) => {
+      const res = response.data;
+      var sex = res.data.sex;
+      var age = res.data.age;
+      axios({
+        method: "GET",
+        url: `http://127.0.0.1:5000/measure/percentile?sex=${sex}&age=${age}`,
+      })
       .then((response) => {
         const res = response.data;
-        var sex = res.data.sex;
-        var age = res.data.age;
+        console.log(res);
+        var left = [];
+        var right = [];
+        for (const r of res.data) {
+          left.push(r[0]);
+          right.push(r[1]);
+        }
+        left.sort(function (a, b) {
+          return Number(a) - Number(b);
+        });
+        right.sort(function (a, b) {
+          return Number(a) - Number(b);
+        });
+
         axios({
           method: "GET",
-          url: `http://127.0.0.1:5000/measure/percentile?sex=${sex}&age=${age}`,
+          url: `http://127.0.0.1:5000/measure/${userid}`,
         })
-          .then((response) => {
-            const res = response.data;
-            var left = [];
-            var right = [];
-            for (const r of res.data) {
-              left.push(r[0]);
-              right.push(r[1]);
-            }
-            left.sort(function (a, b) {
-              return Number(a) - Number(b);
-            });
-            right.sort(function (a, b) {
-              return Number(a) - Number(b);
-            });
+        .then((response) => {
+          const res = response.data;
+          var recent_left = res.data[res.data.length - 1].output_left;
+          setRecentLeft(recent_left);
+          var recent_right = res.data[res.data.length - 1].output_right;
+          setRecentRight(recent_right);
 
-            axios({
-              method: "GET",
-              url: `http://127.0.0.1:5000/measure/${userid}`,
-            })
-              .then((response) => {
-                const res = response.data;
-                console.log(res);
+          var curr = 0;
+          while (left[curr] < recent_left) {
+            curr += 1;
+          }
 
-                var recent_left = res.data[res.data.length - 1].output_left;
-                console.log(recent_left);
-                setRecentLeft(recent_left);
-                var recent_right = res.data[res.data.length - 1].output_right;
-                console.log(recent_right);
-                setRecentRight(recent_right);
+          var percentile_left = (curr / left.length) * 100;
 
-                var curr = 0;
-                while (left[curr] < recent_left) {
-                  curr += 1;
-                }
+          var curr = 0;
+          while (right[curr] < recent_right) {
+            curr += 1;
+          }
 
-                var percentile_left = (curr / left.length) * 100;
+          var percentile_right = (curr / right.length) * 100;
 
-                var curr = 0;
-                while (right[curr] < recent_right) {
-                  curr += 1;
-                }
-
-                var percentile_right = (curr / right.length) * 100;
-
-                setLeftPercentile(Math.round(percentile_left));
-                setRightPercentile(Math.round(percentile_right));
-              })
-              .catch((error) => {
-                if (error.response) {
-                  console.log(error.response);
-                  console.log(error.response.status);
-                  console.log(error.response.headers);
-                }
-              });
-          })
-          .catch((error) => {
-            if (error.response) {
-              console.log(error.response);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            }
-          });
+          setLeftPercentile(Math.round(percentile_left));
+          setRightPercentile(Math.round(percentile_right));
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        });
       })
       .catch((error) => {
         if (error.response) {
@@ -143,11 +131,19 @@ const Home = () => {
           console.log(error.response.headers);
         }
       });
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    });
   }
 
-  getData(uid);
-  getPercentile(uid);
-  // getRules(2);
+  useEffect(() => {
+    getPercentile(uid);
+  }, []);
 
   const cellSpacing = [5, 5];
 

@@ -2,7 +2,7 @@ import Card from "../components/Card";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ReadData from "./ReadData";
-import "../App.css";
+
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";

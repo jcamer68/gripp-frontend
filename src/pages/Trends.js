@@ -1,24 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TrendChart from "../components/TrendChart";
-import { Select } from "@chakra-ui/react";
+
 import { Heading } from "@chakra-ui/react";
 
-import {
-  Grid,
-  GridItem,
-  Image,
-  Hide,
-  Flex,
-  Text,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Stack,
-  Button,
-  Link,
-  Box,
-} from "@chakra-ui/react";
+import { Grid, GridItem, Hide, Box } from "@chakra-ui/react";
 
 const Trends = () => {
   const [chartData, setChartData] = useState([]);

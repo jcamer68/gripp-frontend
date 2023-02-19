@@ -11,8 +11,9 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { FaHome, FaChartLine } from "react-icons/fa";
+import Settings from "../components/Settings";
 
-const buttons = [
+const topButtons = [
   { id: "home", label: "Home", icon: FaHome },
   { id: "trends", label: "Trends", icon: FaChartLine },
 ];
@@ -53,7 +54,7 @@ function NonActiveButton({ id, icon, label }) {
 }
 
 function Sidebar({ name }) {
-  const buttonItems = buttons.map(({ id, label, icon }) => {
+  const buttonItems = topButtons.map(({ id, label, icon }) => {
     console.log(name, id, name === id);
     return id === name ? (
       <ActiveButton key={id} id={id} label={label} icon={icon} />
@@ -76,10 +77,24 @@ function Sidebar({ name }) {
       <Text fontSize="sm" color="blue.600" as="b">
         REGULAR USER
       </Text>
-      <Divider orientation="horizontal" mt="3" borderWidth="2px" />
+      <Divider
+        orientation="horizontal"
+        mt="3"
+        borderWidth="1px"
+        borderColor="gray.200"
+      />
+
       <Stack spacing={2} mt={2}>
         {buttonItems}
       </Stack>
+
+      <Divider
+        orientation="horizontal"
+        mt="205%"
+        borderWidth="1px"
+        borderColor="gray.200"
+      />
+      <Settings />
     </Flex>
   );
 }

@@ -1,5 +1,4 @@
-import React from "react";
-import { Grid, GridItem } from "@chakra-ui/react";
+import React, { Grid, GridItem } from "@chakra-ui/react";
 import Sidebar from "../components/Sidebar";
 
 function PageTemplate({ ChildElement, name }) {

@@ -1,7 +1,6 @@
-import React from "react";
 import grippLogo from "../images/grippLogo.png";
 import background from "../images/gym.jpg";
-import {
+import React, {
   Grid,
   GridItem,
   Image,

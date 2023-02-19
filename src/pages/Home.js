@@ -1,11 +1,7 @@
-import Card from "../components/Card";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ReadData from "./ReadData";
-
-import React from "react";
-import { Box } from "@chakra-ui/react";
-import { Heading } from "@chakra-ui/react";
+import React, { Grid, GridItem, Box, Heading } from "@chakra-ui/react";
 
 const Home = () => {
   const uid = 2;
@@ -64,65 +60,73 @@ const Home = () => {
       method: "GET",
       url: `http://127.0.0.1:5000/user/${userid}`,
     })
-    .then((response) => {
-      const res = response.data;
-      var sex = res.data.sex;
-      var age = res.data.age;
-      axios({
-        method: "GET",
-        url: `http://127.0.0.1:5000/measure/percentile?sex=${sex}&age=${age}`,
-      })
       .then((response) => {
         const res = response.data;
-        console.log(res);
-        var left = [];
-        var right = [];
-        for (const r of res.data) {
-          left.push(r[0]);
-          right.push(r[1]);
-        }
-        left.sort(function (a, b) {
-          return Number(a) - Number(b);
-        });
-        right.sort(function (a, b) {
-          return Number(a) - Number(b);
-        });
-
+        var sex = res.data.sex;
+        var age = res.data.age;
         axios({
           method: "GET",
-          url: `http://127.0.0.1:5000/measure/${userid}`,
+          url: `http://127.0.0.1:5000/measure/percentile?sex=${sex}&age=${age}`,
         })
-        .then((response) => {
-          const res = response.data;
-          var recent_left = res.data[res.data.length - 1].output_left;
-          setRecentLeft(recent_left);
-          var recent_right = res.data[res.data.length - 1].output_right;
-          setRecentRight(recent_right);
+          .then((response) => {
+            const res = response.data;
+            console.log(res);
+            var left = [];
+            var right = [];
+            for (const r of res.data) {
+              left.push(r[0]);
+              right.push(r[1]);
+            }
+            left.sort(function (a, b) {
+              return Number(a) - Number(b);
+            });
+            right.sort(function (a, b) {
+              return Number(a) - Number(b);
+            });
 
-          var curr = 0;
-          while (left[curr] < recent_left) {
-            curr += 1;
-          }
+            axios({
+              method: "GET",
+              url: `http://127.0.0.1:5000/measure/${userid}`,
+            })
+              .then((response) => {
+                const res = response.data;
+                var recent_left = res.data[res.data.length - 1].output_left;
+                setRecentLeft(recent_left);
+                var recent_right = res.data[res.data.length - 1].output_right;
+                setRecentRight(recent_right);
 
-          var percentile_left = (curr / left.length) * 100;
+                var curr = 0;
+                while (left[curr] < recent_left) {
+                  curr += 1;
+                }
 
-          var curr = 0;
-          while (right[curr] < recent_right) {
-            curr += 1;
-          }
+                var percentile_left = (curr / left.length) * 100;
 
-          var percentile_right = (curr / right.length) * 100;
+                var curr = 0;
+                while (right[curr] < recent_right) {
+                  curr += 1;
+                }
 
-          setLeftPercentile(Math.round(percentile_left));
-          setRightPercentile(Math.round(percentile_right));
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
-        });
+                var percentile_right = (curr / right.length) * 100;
+
+                setLeftPercentile(Math.round(percentile_left));
+                setRightPercentile(Math.round(percentile_right));
+              })
+              .catch((error) => {
+                if (error.response) {
+                  console.log(error.response);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                }
+              });
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log(error.response);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            }
+          });
       })
       .catch((error) => {
         if (error.response) {
@@ -131,14 +135,6 @@ const Home = () => {
           console.log(error.response.headers);
         }
       });
-    })
-    .catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      }
-    });
   }
 
   useEffect(() => {
@@ -165,21 +161,45 @@ const Home = () => {
           Your Latest Activities
         </Heading>
 
-        <Box bg={"green.100"} p="20">
-          <Card name="Right Percentile" stat={rightPercentile}></Card>
-        </Box>
+        <Heading size="md" color="#3D4857" mt="12" mb="4">
+          Compared to [Sex] users between the age of [age range]
+        </Heading>
 
-        <Box bg={"blue.100"} p="20">
-          <Card name="Left Percentile" stat={leftPercentile}></Card>
-        </Box>
-
-        <Box bg={"red.100"} p="20">
-          <ReadData
-            onrun={() => getData(uid)}
-            recent_left={recentLeft}
-            recent_right={recentRight}
-          ></ReadData>
-        </Box>
+        <Grid
+          h="20vh"
+          templateRows="repeat(2, 1fr)"
+          templateColumns="repeat(2, 1fr)"
+          mt={"30"}
+          gap={10}
+        >
+          <GridItem colSpan={1}>
+            <Box bg={"green.100"} p="10">
+              <Heading size={"md"}>Right Hand</Heading>
+              <Heading mt={"5"}>{rightPercentile}th</Heading>
+              <Heading size={"md"} fontWeight="regular">
+                Percentile
+              </Heading>
+            </Box>
+          </GridItem>
+          <GridItem colSpan={1}>
+            <Box bg={"blue.100"} p="10">
+              <Heading size={"md"}>Left Hand</Heading>
+              <Heading mt={"5"}>{leftPercentile}th</Heading>
+              <Heading size={"md"} fontWeight="regular">
+                Percentile
+              </Heading>
+            </Box>
+          </GridItem>
+          <GridItem colSpan={2}>
+            <Box bg={"red.100"}>
+              <ReadData
+                onrun={() => getData(uid)}
+                recent_left={recentLeft}
+                recent_right={recentRight}
+              ></ReadData>
+            </Box>
+          </GridItem>
+        </Grid>
 
         {/* <Box>
           {" "}

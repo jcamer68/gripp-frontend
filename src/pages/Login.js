@@ -15,12 +15,25 @@ import React, {
   Link,
   Divider,
   IconButton,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
 } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { LockIcon, EmailIcon } from "@chakra-ui/icons";
 
 import { FaGoogle } from "react-icons/fa";
 
 function Login() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Grid h="100vh" templateColumns="repeat(12, 1fr)">
       <GridItem colSpan={["12", "4"]}>
@@ -66,22 +79,44 @@ function Login() {
                 borderWidth="1px"
                 borderColor="gray.200"
               />
-              <Link href="/home">
-                <Button w="100%" colorScheme="blue">
-                  Sign Up With Email
-                </Button>
-              </Link>
+
+              <Button w="100%" colorScheme="blue" onClick={onOpen}>
+                Sign Up With Email
+              </Button>
+
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>User Creation</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <FormControl>
+                      <FormLabel>Email address</FormLabel>
+                      <Input type="email" />
+                      <FormHelperText>
+                        We'll never share your email.
+                      </FormHelperText>
+                    </FormControl>
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button variant="ghost" mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                    <Button colorScheme="blue">Submit</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+
               <Link href="/home" bg={"gray.100"}>
-                <Stack direction={["column", "row"]} spacing="24px">
-                  <Button w="100%" colorScheme="white" color={"black"}>
-                    <IconButton
-                      variant="outline"
-                      icon={<FaGoogle />}
-                      mr={"3"}
-                    ></IconButton>
-                    Sign In with Google
-                  </Button>
-                </Stack>
+                <Button
+                  leftIcon={<FaGoogle />}
+                  w="100%"
+                  colorScheme="white"
+                  color={"black"}
+                >
+                  Sign In with Google
+                </Button>
               </Link>
             </Stack>
           </form>

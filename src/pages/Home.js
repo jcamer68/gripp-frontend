@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ReadData from "./ReadData";
 import React, { Grid, GridItem, Box, Heading } from "@chakra-ui/react";
+import { auth, db } from '../firebase';
+import { doc, getDoc } from "firebase/firestore";
 
 const Home = () => {
   const uid = 2;
@@ -11,6 +13,8 @@ const Home = () => {
   const [recentLeft, setRecentLeft] = useState();
   const [recentRight, setRecentRight] = useState();
   const [rules, setRules] = useState();
+  const [firstname, setFirstname] = useState();
+  const [lastname, setLastname] = useState();
 
   function getData(userid) {
     axios({
@@ -139,6 +143,21 @@ const Home = () => {
 
   useEffect(() => {
     getPercentile(uid);
+    const unsub = auth.onAuthStateChanged((authObj) => {
+      unsub();
+      if (authObj) {
+        async function getUserName() {
+          const firebaseid = authObj.uid;
+          const docSnap = await getDoc(doc(db, "users", firebaseid));
+          setFirstname(docSnap.data().firstname);
+          setLastname(docSnap.data().lastname);
+        }
+        getUserName();
+      } else {
+        // not logged in
+      }
+    });
+
   }, []);
 
   const cellSpacing = [5, 5];
@@ -147,7 +166,7 @@ const Home = () => {
     <>
       <Box bg="#FBBA9C" w="100%" p={4} h="200" borderRadius="20">
         <Heading size="lg" align="middle" mt={"30"} mb={"25"}>
-          Good Morning, Myles!
+          Good Morning, {firstname}!
         </Heading>
         <Box bg="white" w="100%" p={4} color="#3D4857" borderRadius="20">
           <Heading size="md" align="middle" text>

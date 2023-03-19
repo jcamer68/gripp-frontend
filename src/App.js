@@ -10,6 +10,7 @@ import PageTemplate from "./pages/PageTemplate";
 import Error from "./pages/Error";
 
 import ReadData from "./pages/ReadData";
+import { createContext, useContext } from 'react';
 
 const router = createBrowserRouter([
   {

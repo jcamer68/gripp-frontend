@@ -53,7 +53,7 @@ function NonActiveButton({ id, icon, label }) {
   );
 }
 
-function Sidebar({ name }) {
+function Sidebar({ name, firstname, lastname }) {
   const buttonItems = topButtons.map(({ id, label, icon }) => {
     console.log(name, id, name === id);
     return id === name ? (
@@ -66,14 +66,14 @@ function Sidebar({ name }) {
   return (
     <Flex direction="column" mt="5">
       <Avatar
-        name="John Cameron"
+        name={firstname+" "+lastname}
         size="xl"
         src="https://bit.ly/dan-abramov"
         mb="2"
         mx="4"
       />
       <Text fontSize="3xl" as="b" mx="4">
-        Myles MacDonald
+        {firstname} {lastname}
       </Text>
       <Text fontSize="sm" color="blue.600" as="b" mx="4">
         REGULAR USER
